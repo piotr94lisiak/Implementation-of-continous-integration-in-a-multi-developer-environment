@@ -1,0 +1,9 @@
+# for i in {1..10}; do ansible-playbook create_instance.yml -e "cloud=DHN72 type=PROD_MEDIUM"; done
+# ansible-playbook create_instance.yml -e "cloud=DHN72 type=TOOLS_MEDIUM instance_name=JENKINS"
+
+- name: "Create openstack instance"
+  hosts: "localhost"
+  vars_files:
+    - "vars/openstack.yml"
+  roles:
+    - {role: create_instance}

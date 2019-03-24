@@ -1,0 +1,5 @@
+- name: "Setup Jenkins"
+  hosts: "jenkins"
+  roles:
+    - {role: setup_jenkins}
+    - {role: install_jenkins_plugins}

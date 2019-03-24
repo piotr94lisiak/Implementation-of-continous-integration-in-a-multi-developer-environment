@@ -1,0 +1,41 @@
+TOOLS_SMALL:
+  flavor: fa.002-0008
+  image:	nesc-baseimages-ubuntu-18.04-2018-11-22
+  key: tools
+  network: tools
+  security: default
+
+TOOLS_MEDIUM:
+  flavor: fa.004-0016
+  image:	nesc-baseimages-ubuntu-18.04-2018-11-22
+  key: tools
+  network: tools
+  security: default
+
+TOOLS_BIG:
+  flavor: fa.008-0032
+  image:	nesc-baseimages-ubuntu-18.04-2018-11-22
+  key: tools
+  network: tools
+  security: default
+
+PROD_SMALL:
+  flavor: fa.002-0008
+  image:	nesc-baseimages-ubuntu-18.04-2018-11-22
+  key: hosts
+  network: production
+  security: default
+
+PROD_MEDIUM:
+  flavor: fa.004-0016
+  image:	nesc-baseimages-ubuntu-18.04-2018-11-22
+  key: hosts
+  network: production
+  security: default
+
+PROD_BIG:
+  flavor: fa.008-0032
+  image:	nesc-baseimages-ubuntu-18.04-2018-11-22
+  key: hosts
+  network: production
+  security: default

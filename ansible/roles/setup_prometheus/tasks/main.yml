@@ -1,0 +1,35 @@
+- name: Copy Dockerfile
+  copy:
+    src: roles/setup_prometheus/files/Dockerfile
+    dest: Dockerfile
+
+- name: Copy gerrit-targets.yml
+  copy:
+    src: roles/setup_prometheus/files/gerrit-targets.yml
+    dest: gerrit-targets.yml
+
+- name: Copy jenkins-targets.yml
+  copy:
+    src: roles/setup_prometheus/files/jenkins-targets.yml
+    dest: jenkins-targets.yml
+
+- name: Copy prod-targets.yml
+  copy:
+    src: roles/setup_prometheus/files/prod-targets.yml
+    dest: prod-targets.yml
+
+- name: Copy prometheus.yml
+  copy:
+    src: roles/setup_prometheus/files/prometheus.yml
+    dest: prometheus.yml
+
+- name: Copy zuul-targets.yml
+  copy:
+    src: roles/setup_prometheus/files/zuul-targets.yml
+    dest: zuul-targets.yml
+
+- name: Build prometheus image
+  command: docker build -t prometheus:1.0 .
+
+- name: Run prometheus image
+  command: docker run -d --name prometheus -p 9090:9090 -v prometheus:/prometheus prometheus:1.0

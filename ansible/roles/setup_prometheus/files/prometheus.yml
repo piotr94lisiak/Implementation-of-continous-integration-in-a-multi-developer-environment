@@ -1,0 +1,42 @@
+# Global Config
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+  scrape_timeout: 10s
+ 
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      # - alertmanager:9093
+ 
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+ 
+scrape_configs:
+ 
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['localhost:9090']
+ 
+  - job_name: 'GERRIT'
+    file_sd_configs:
+      - files:
+         - gerrit-targets.yml
+
+  - job_name: 'ZUUL'
+    file_sd_configs:
+      - files:
+         - zuul-targets.yml
+
+  - job_name: 'JENKINS'
+    file_sd_configs:
+      - files:
+         - jenkins-targets.yml
+
+  - job_name: 'PROD'
+    file_sd_configs:
+      - files:
+         - prod-targets.yml

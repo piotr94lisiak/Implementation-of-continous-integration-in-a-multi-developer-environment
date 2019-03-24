@@ -1,0 +1,6 @@
+- name: "Self deploy"
+  hosts: "localhost"
+  vars_files:
+    - "vars/common.yml"
+  roles:
+    - {role: self_deploy}

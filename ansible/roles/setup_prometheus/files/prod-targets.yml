@@ -1,0 +1,39 @@
+- targets: ['10.131.149.71:8999']
+  labels:
+    name: 'Host 1 - PROD'
+ 
+- targets: ['10.131.150.223:8999']
+  labels:
+    name: 'Host 2 - PROD'
+ 
+- targets: ['10.131.150.190:8999']
+  labels:
+    name: 'Host 3 - PROD'
+ 
+- targets: ['10.131.150.198:8999']
+  labels:
+    name: 'Host 4 - PROD'
+     
+- targets: ['10.131.150.224:8999']
+  labels:
+    name: 'Host 5 - PROD'
+
+- targets: ['10.131.150.189:8999']
+  labels:
+    name: 'Host 6 - PROD'
+ 
+- targets: ['10.131.149.78:8999']
+  labels:
+    name: 'Host 7 - PROD'
+ 
+- targets: ['10.131.150.196:8999']
+  labels:
+    name: 'Host 8 - PROD'
+ 
+- targets: ['10.131.150.155:8999']
+  labels:
+    name: 'Host 9 - PROD'
+     
+- targets: ['10.131.150.221:8999']
+  labels:
+    name: 'Host 10 - PROD'

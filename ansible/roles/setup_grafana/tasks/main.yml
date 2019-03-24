@@ -1,0 +1,2 @@
+- name: Run grafana in docker
+  command: docker run -d --restart always --network host --name grafana -p 3000:3000 -e "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,grafana-piechart-panel,novalabs-annotations-panel,vonage-status-panel,fetzerch-sunandmoon-datasource,natel-discrete-panel,natel-influx-admin-panel" -v "grafana:/var/lib/grafana" grafana/grafana

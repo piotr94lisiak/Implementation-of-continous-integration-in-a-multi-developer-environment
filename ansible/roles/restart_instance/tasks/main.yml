@@ -1,0 +1,10 @@
+- name: Prompt
+  pause:
+    prompt: |-
+      Make sure you know what you are doing.
+      Below instance will be restarted!
+      (Hit ENTER to continue)
+
+- name: Restart instance
+  shell: |
+    openstack --os-cloud {{ cloud }} server reboot --hard {{ target }}

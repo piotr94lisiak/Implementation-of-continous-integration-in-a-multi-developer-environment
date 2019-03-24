@@ -1,0 +1,5 @@
+- name: "Setup infra monitoring"
+  hosts: "monitoring"
+  roles:
+    - {role: setup_prometheus}
+    - {role: setup_grafana}

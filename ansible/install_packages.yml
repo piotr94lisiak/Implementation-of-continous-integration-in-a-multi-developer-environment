@@ -1,0 +1,4 @@
+- name: "Install package on {{ target | default('none') }}"
+  hosts: "{{ target | default('none') }}"
+  roles:
+    - {role: install_packages}

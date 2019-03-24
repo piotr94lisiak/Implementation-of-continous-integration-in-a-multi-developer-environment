@@ -1,0 +1,4 @@
+- name: "Ping each host on cloud"
+  hosts: "all"
+  roles:
+    - {role: ping}

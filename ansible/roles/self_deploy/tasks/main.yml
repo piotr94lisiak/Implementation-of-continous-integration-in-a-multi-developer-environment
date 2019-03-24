@@ -1,0 +1,58 @@
+- name: Check openstack directory
+  file: path=~/.config/openstack state=directory
+
+- name: Check ssh key directory
+  file: path=~/.ssh/mgr state=directory
+
+- name: Remov openstack config
+  file:
+    path: ~/.config/openstack/clouds.yaml
+    state: absent
+
+- name: Remov tools key
+  file:
+    path: ~/.ssh/mgr/tools
+    state: absent
+
+- name: Remov hosts key
+  file:
+    path: ~/.ssh/mgr/hosts
+    state: absent
+
+- name: Copy openstack config
+  copy:
+    src: roles/self_deploy/files/clouds.yml
+    dest: ~/.config/openstack/clouds.yaml
+
+- name: Change owner, group and mode of the cloud config file
+  file:
+    path: ~/.config/openstack/clouds.yaml
+    owner: '{{ user }}'
+    group: '{{ user }}'
+    mode: "u+rw-x,g+r-wx,o+r-wx"
+
+- name: Copy tools key
+  copy:
+    src: roles/self_deploy/files/tools
+    dest: ~/.ssh/mgr/tools
+    mode: 600
+
+- name: Change owner, group and mode of the tools key
+  file:
+    path: ~/.ssh/mgr/tools
+    owner: '{{ user }}'
+    group: '{{ user }}'
+    mode: "u+rw-x,g-rwx,o-rwx"
+
+- name: Copy hosts key
+  copy:
+    src: roles/self_deploy/files/hosts
+    dest: ~/.ssh/mgr/hosts
+    mode: 600
+
+- name: Change owner, group and mode of the hosts key
+  file:
+    path: ~/.ssh/mgr/hosts
+    owner: '{{ user }}'
+    group: '{{ user }}'
+    mode: "u+rw-x,g-rwx,o-rwx"

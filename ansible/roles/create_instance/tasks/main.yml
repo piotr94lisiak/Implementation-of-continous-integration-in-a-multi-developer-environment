@@ -1,0 +1,96 @@
+- name: Create small prod instance
+  shell: >
+    openstack --os-cloud {{ cloud }} server create
+    --flavor {{ PROD_SMALL.flavor }}
+    --image {{ PROD_SMALL.image }}
+    --security-group {{ PROD_SMALL.security }}
+    --key-name {{ PROD_SMALL.key }}
+    --network {{ PROD_SMALL.network }}
+    --max 1
+    --wait
+    {{ cloud }}_host
+  when: type == "PROD_SMALL"
+
+- name: Create medium prod instance
+  shell: >
+    openstack --os-cloud {{ cloud }} server create
+    --flavor {{ PROD_MEDIUM.flavor }}
+    --image {{ PROD_MEDIUM.image }}
+    --security-group {{ PROD_MEDIUM.security }}
+    --key-name {{ PROD_MEDIUM.key }}
+    --network {{ PROD_MEDIUM.network }}
+    --max 1
+    --wait
+    {{ cloud }}_host
+  when: type == "PROD_MEDIUM"
+
+- name: Create big prod instance
+  shell: >
+    openstack --os-cloud {{ cloud }} server create
+    --flavor {{ PROD_BIG.flavor }}
+    --image {{ PROD_BIG.image }}
+    --security-group {{ PROD_BIG.security }}
+    --key-name {{ PROD_BIG.key }}
+    --network {{ PROD_BIG.network }}
+    --max 1
+    --wait
+    {{ cloud }}_host
+  when: type == "PROD_BIG"
+
+- name: Create small tool instance
+  shell: >
+    openstack --os-cloud {{ cloud }} server create
+    --flavor {{ TOOLS_SMALL.flavor }}
+    --image {{ TOOLS_SMALL.image }}
+    --security-group {{ TOOLS_SMALL.security }}
+    --key-name {{ TOOLS_SMALL.key }}
+    --network {{ TOOLS_SMALL.network }}
+    --max 1
+    --wait
+    {{ cloud }}_host
+  when: type == "TOOLS_SMALL"
+
+- name: Create medium tool instance
+  shell: >
+    openstack --os-cloud {{ cloud }} server create
+    --flavor {{ TOOLS_MEDIUM.flavor }}
+    --image {{ TOOLS_MEDIUM.image }}
+    --security-group {{ TOOLS_MEDIUM.security }}
+    --key-name {{ TOOLS_MEDIUM.key }}
+    --network {{ TOOLS_MEDIUM.network }}
+    --max 1
+    --wait
+    {{ cloud }}_host
+  when: type == "TOOLS_MEDIUM"
+
+- name: Create big tool instance
+  shell: >
+    openstack --os-cloud {{ cloud }} server create
+    --flavor {{ TOOLS_BIG.flavor }}
+    --image {{ TOOLS_BIG.image }}
+    --security-group {{ TOOLS_BIG.security }}
+    --key-name {{ TOOLS_BIG.key }}
+    --network {{ TOOLS_BIG.network }}
+    --max 1
+    --wait
+    {{ cloud }}_host
+  when: type == "TOOLS_BIG"
+
+- name: Look for floating ip
+  shell: >
+    openstack --os-cloud {{ cloud }} floating ip list | grep -E "None" | grep -E -o -m 1 "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+  register: floating_ip
+
+- name: Set floating ip for new instance
+  shell: >
+    openstack --os-cloud {{ cloud }} ip floating add {{ floating_ip.stdout }} {{ cloud }}_host
+
+- name: Rename prod instance
+  shell: >
+    openstack --os-cloud {{ cloud }} server set --name PROD_{{ floating_ip.stdout }} {{ cloud }}_host
+  when: instance_name is not defined
+
+- name: Rename custom instance
+  shell: >
+    openstack --os-cloud {{ cloud }} server set --name {{ instance_name }}_{{ floating_ip.stdout }} {{ cloud }}_host
+  when: instance_name is defined

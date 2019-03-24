@@ -1,0 +1,28 @@
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+
+- name: Install main packages
+  retries: 2
+  delay: 3
+  register: result
+  until: result is succeeded
+  ignore_errors: yes
+  apt:
+    name: "{{ item.name }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - {name: 'curl'}
+    - {name: 'docker-compose'}
+    - {name: 'docker.io'}
+    - {name: 'git-all'}
+    - {name: 'nano'}
+    - {name: 'openjdk-8-jdk'}
+    - {name: 'python-pip'}
+    - {name: 'python3'}
+    - {name: 'python3-pip'}
+    - {name: 'shellcheck'}
+    - {name: 'vim'}

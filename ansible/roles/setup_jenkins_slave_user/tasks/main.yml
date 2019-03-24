@@ -1,0 +1,49 @@
+- name: Create a jenkins user
+  user:
+    name: jenkins
+    password: '$6$uw4Pv5dESnxS7$7e0XEeSf.NZQcQArghWxhjpc5u0u1WRjrdCa6D14x0eneoSvmhnK4oteOlmY8UQpY7n6hgc9yPLDJ3ucvx0AB/'
+    state: present
+    shell: /bin/bash
+    uid: 1001
+    system: no
+    createhome: yes
+    home: /home/jenkins
+
+- name: Create jenkins-slave directory
+  file:
+    path: /home/jenkins/jenkins-slave
+    state: directory
+    owner: jenkins
+    group: jenkins
+
+- name: Create .ssh directory for jenkins user
+  file:
+    path: /home/jenkins/.ssh
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: "u+rwx,g-rwx,o-rwx"
+
+- name: Copy private key
+  copy:
+    src: roles/setup_jenkins_slave_user/files/id_rsa
+    dest: /home/jenkins/.ssh/id_rsa
+    owner: jenkins
+    group: jenkins
+    mode: "u+rw-x,g-rwx,o-rwx"
+
+- name: Copy public key
+  copy:
+    src: roles/setup_jenkins_slave_user/files/id_rsa.pub
+    dest: /home/jenkins/.ssh/id_rsa.pub
+    owner: jenkins
+    group: jenkins
+    mode: "u+rw-x,g+r-wx,o+r-wx"
+
+- name: Copy authorized_keys file
+  copy:
+    src: roles/setup_jenkins_slave_user/files/authorized_keys
+    dest: /home/jenkins/.ssh/authorized_keys
+    owner: jenkins
+    group: jenkins
+    mode: "u+rw-x,g+r-wx,o+r-wx"

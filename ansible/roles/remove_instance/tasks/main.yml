@@ -1,0 +1,10 @@
+- name: Prompt
+  pause:
+    prompt: |-
+      Make sure you know what you are doing.
+      Below instance will be deleted!
+      (Hit ENTER to continue)
+
+- name: Delete instance
+  shell: |
+    openstack --os-cloud {{ cloud }} server delete {{ target }}

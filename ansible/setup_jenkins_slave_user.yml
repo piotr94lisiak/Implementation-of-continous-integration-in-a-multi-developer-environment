@@ -1,0 +1,4 @@
+- name: "Setup jenkins slave user {{ target | default('none') }}"
+  hosts: "{{ target | default('none') }}"
+  roles:
+    - {role: setup_jenkins_slave_user}

@@ -1,0 +1,6 @@
+# Use 'openstack --os-cloud DHN72 server list' command to list instances. Target parameter in playbook should be ID or Name of the instance
+
+- name: Restart instance
+  hosts: "localhost"
+  roles:
+    - {role: restart_instance}
