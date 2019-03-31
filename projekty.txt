@@ -1,0 +1,2 @@
+PROJEKTY KTÓRE MOGĄ BYĆ PRZYDATNE PODCZAS TESTOWANIA:
+https://github.com/toggl/toggldesktop
