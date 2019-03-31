@@ -1,4 +1,5 @@
-PROJEKTY KTÓRE MOGĄ BYĆ PRZYDATNE PODCZAS TESTOWANIA:
+PROJEKTY ORAZ POMYSŁY NA TESTOWANIE INFRASTRUKTURY:
 
 https://github.com/toggl/toggldesktop
 https://github.com/Affectiva/cpp-sdk-samples
+testowanie procesu budowania dystrybucji raspberry pi przy pomocy yocto i bitbake.
