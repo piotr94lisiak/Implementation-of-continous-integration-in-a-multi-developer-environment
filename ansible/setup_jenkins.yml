@@ -2,4 +2,3 @@
   hosts: "jenkins"
   roles:
     - {role: setup_jenkins}
-    - {role: install_jenkins_plugins}

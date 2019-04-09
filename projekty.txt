@@ -1,8 +1,0 @@
-PROJEKTY ORAZ POMYSŁY NA TESTOWANIE INFRASTRUKTURY:
-
-mały projekt: 
-  - prosta aplikacja w django z przeprowadzonymi unit testami
-średni projekt: 
-  - aplikacja napisana w c++: https://github.com/toggl/toggldesktop
-duży projekt: 
-  - testowanie procesu budowania dystrybucji raspberry pi przy pomocy yocto i bitbake.

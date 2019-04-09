@@ -1,0 +1,77 @@
+- name: Install main packages
+  copy:
+    src: roles/install_jenkins_plugins/files/{{ item.name }}
+    dest: /var/lib/jenkins/plugins/{{ item.name }}
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - {name: 'ace-editor.jpi'}
+    - {name: 'apache-httpcomponents-client-4-api.jpi'}
+    - {name: 'authentication-tokens.jpi'}
+    - {name: 'bouncycastle-api.jpi'}
+    - {name: 'branch-api.jpi'}
+    - {name: 'build-timeout.jpi'}
+    - {name: 'cloudbees-folder.jpi'}
+    - {name: 'command-launcher.jpi'}
+    - {name: 'credentials-binding.jpi'}
+    - {name: 'credentials.jpi'}
+    - {name: 'display-url-api.jpi'}
+    - {name: 'docker-commons.jpi'}
+    - {name: 'docker-workflow.jpi'}
+    - {name: 'durable-task.jpi'}
+    - {name: 'email-ext.jpi'}
+    - {name: 'git-client.jpi'}
+    - {name: 'git-server.jpi'}
+    - {name: 'git.jpi'}
+    - {name: 'github-api.jpi'}
+    - {name: 'github.jpi'}
+    - {name: 'gradle.jpi'}
+    - {name: 'handlebars.jpi'}
+    - {name: 'jackson2-api.jpi'}
+    - {name: 'jdk-tool.jpi'}
+    - {name: 'jquery-detached.jpi'}
+    - {name: 'jsch.jpi'}
+    - {name: 'junit.jpi'}
+    - {name: 'lockable-resources.jpi'}
+    - {name: 'mailer.jpi'}
+    - {name: 'matrix-project.jpi'}
+    - {name: 'momentjs.jpi'}
+    - {name: 'pipeline-build-step.jpi'}
+    - {name: 'pipeline-graph-analysis.jpi'}
+    - {name: 'pipeline-input-step.jpi'}
+    - {name: 'pipeline-milestone-step.jpi'}
+    - {name: 'pipeline-model-api.jpi'}
+    - {name: 'pipeline-model-declarative-agent.jpi'}
+    - {name: 'pipeline-model-definition.jpi'}
+    - {name: 'pipeline-model-extensions.jpi'}
+    - {name: 'pipeline-rest-api.jpi'}
+    - {name: 'pipeline-stage-step.jpi'}
+    - {name: 'pipeline-stage-tags-metadata.jpi'}
+    - {name: 'pipeline-stage-view.jpi'}
+    - {name: 'plain-credentials.jpi'}
+    - {name: 'resource-disposer.jpi'}
+    - {name: 'scm-api.jpi'}
+    - {name: 'script-security.jpi'}
+    - {name: 'ssh-credentials.jpi'}
+    - {name: 'ssh-slaves.jpi'}
+    - {name: 'structs.jpi'}
+    - {name: 'timestamper.jpi'}
+    - {name: 'token-macro.jpi'}
+    - {name: 'workflow-aggregator.jpi'}
+    - {name: 'workflow-api.jpi'}
+    - {name: 'workflow-basic-steps.jpi'}
+    - {name: 'workflow-cps-global-lib.jpi'}
+    - {name: 'workflow-cps.jpi'}
+    - {name: 'workflow-durable-task-step.jpi'}
+    - {name: 'workflow-job.jpi'}
+    - {name: 'workflow-multibranch.jpi'}
+    - {name: 'workflow-scm-step.jpi'}
+    - {name: 'workflow-step-api.jpi'}
+    - {name: 'workflow-support.jpi'}
+    - {name: 'ws-cleanup.jpi'}
+
+- name: Restart jenkins
+  service:
+    name: jenkins
+    state: restarted
